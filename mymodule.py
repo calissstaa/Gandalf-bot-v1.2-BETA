@@ -86,17 +86,19 @@ def returnList(text, name):
     tmp["gifRep"] = "gifs/precisesly_;3.gif"
     return tmp
   
-  elif any(word in text for word in constDC["gg"]):
-    tmp["gifRep"] = "gifs/faster wink.gif"
-    return tmp
-  
+  #here
+
   elif all(word in text for word in constDC["speakInRiddles"]):
     tmp["gifRep"] = "gifs/you speak in riddles.gif"
     return tmp
   
   else:
     return None
-
+"""
+  elif any(word in text for word in constDC["gg"]):
+    tmp["gifRep"] = "gifs/faster wink.gif"
+    return tmp
+"""
 
 # Return random movie lines
 def get_random_line():

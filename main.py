@@ -33,8 +33,14 @@ async def on_message(message):
   if not any(word in msg for word in gandalf_names):
     return
   
-  if mdl.mainCheck(msg, name):
-    await message.channel.send(mdl.mainCheck(msg, name))
+  response = mdl.mainCheck(msg, name)
+  if response:
+    # Check for text format
+    if "/" not in response:
+      await message.channel.send(response)
+    # Print file
+    else:
+      await message.channel.send(file=discord.File(response))
     return
   
   if any(word in msg for word in encourage):
