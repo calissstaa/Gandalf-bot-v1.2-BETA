@@ -6,34 +6,46 @@ randomizedData1 = [
     {
         "tag": "greetings",
         "patterns": ["hello", "hai", "hullo", "sup", "ni hao", "greeting", "hey", "howdy", "nice to see", "salutation", "hola", "good day", "evening", "afternoon", "morning"],
-        "responses": ["Hello, {}", "Good to see you too {}.", "You haven't aged a day!", "Greetings, {}", "How have you been {}?"],
+        "responses": ["Hello, {}.", "Good to see you too {}.", "You haven't aged a day!", "Greetings, {}.", "How have you been {}?"]
     },
     {
         "tag": "how are you",
         "patterns": ["and you?", "how are you", "wassup", "what's up",  "how is it going", "how are things", "how have you been","how about you"],
-        "responses": ["I am well, thank you.", "On my way to Gondor.", "Currently reading books.", "Well, what can I tell you? Life in the wide world goes on much as if it has past age. Full of its own comings and goings, scarcely even aware of the existence of Hobbits...", "This is not the time to talk now, currently hunting orcs!"],
+        "responses": ["I am well, thank you.", "On my way to Gondor.", "Currently reading books.", "Well, what can I tell you? Life in the wide world goes on much as if it has past age. Full of its own comings and goings, scarcely even aware of the existence of Hobbits...", "This is not the time to talk now, currently hunting orcs!"]
     },
     {
         "tag": "sup",
         "patterns": ["what are you up to", "what's new", "what's popping", "what is happening", "doing", "up to"],
-        "responses": ["On my way to Gondor.", "Currently reading books.", "Well, what can I tell you? Life in the wide world goes on much as if it has past age. Full of its own comings and goings, scarcely even aware of the existence of Hobbits...", "This is not the time to talk now, currently hunting orcs!"],
+        "responses": ["On my way to Gondor.", "Currently reading books.", "Well, what can I tell you? Life in the wide world goes on much as if it has past age. Full of its own comings and goings, scarcely even aware of the existence of Hobbits...", "This is not the time to talk now, currently hunting orcs!"]
     },
     {
         "tag": "appreciation",
         "patterns": ["thanks", "thank", "xie xie", "arigato", "that's helpful", "thx"],
-        "responses": ["Take care", "You are welcome"],
+        "responses": ["Take care.", "You are welcome."]
     },
     {
         "tag": "bye",
         "patterns": ["bye", "take care", "laters", "see you later", "until next time"],
-        "responses": ["Goodbye {}", "Farewell {}", "See you again {}", "Take care, {}.", "Have a good day."],
+        "responses": ["Goodbye {}.", "Farewell {}.", "See you again {}.", "Take care, {}.", "Have a good day."]
     },
     {
         "tag": "sorry",
         "patterns": ["sorry", "my bad", "oops", "see you later", "until next time"],
-        "responses": ["There is nothing to forgive", "Take care"],
+        "responses": ["There is nothing to forgive.", "Take care."]
     },
-    
+    {
+      "tag": "ability",
+      "patterns": ["do something", "what can you do", "your ability"],
+      "responses": ["There is nothing to forgive.", "Take care."]
+    }
+]
+
+ifAnyData = [
+  {
+    "patterns": ["hello", "hai", "hullo", "sup", "ni hao", "greeting", "hey", "howdy", "nice to see", "salutation", "hola", "good day", "evening", "afternoon", "morning"],
+    "responses": ["Hello, {}", "Good to see you too {}.", "You haven't aged a day!", "Greetings, {}", "How have you been {}?"]
+  },
+
 ]
 
 # temp data for ideas

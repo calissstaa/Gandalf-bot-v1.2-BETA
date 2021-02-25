@@ -13,7 +13,7 @@ async def on_ready():
 gandalf_names = ["gandalf", "mithrandir"]
 
 # Encourage word set
-encourage = ["encourage", "cheer", "sad", "cry", "help", "depres", "confuse", "afraid", "sorrow","stress", "tired", "sedih", "lost", "grieved", "miserable", "trouble", "inspire", "quote", "wisdom"]
+encourage = ["encourage", "cheer", "sad", "cry", "help", "depres", "confuse", "afraid", "sorrow","stress", "tired", "sedih", "lost", "grieved", "miserable", "trouble", "inspire", "quote", "wisdom", "counsel", "what should i do"]
 
 @client.event
 async def on_message(message):

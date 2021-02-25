@@ -1,6 +1,5 @@
-import requests
+import requests, os
 from random import choice
-from os import getenv
 import mydata as dt
 
 def mainCheck(text, name):
@@ -19,7 +18,7 @@ def specialNameCheck(text1, name):
       "gandalf": "Gandalf? Yes... that was what they used to call me. Gandalf the Grey. That was my name.", 
       "gandalf...": "I am Gandalf the White. And I come back to you now - at the turn of the tide.",         "gandalf?": "Yes, I'm here and you're lucky to be here, too. A few more hours and you would have been beyond our aid. You have some strength in you my dear Hobbit.",
       "gandalf!":"{}.".format(name),
-      "olorin": "How did you come to know that name?",
+      "olorin": "You know this? How?",
       "tharkun": "Are you a realtive of dwarves?",
       "incanus": "Long have someone called me by that name",
       "stromcrow": "I will draw you, Saruman, as poison is drawn from a wound."
@@ -37,6 +36,9 @@ For:
 constDC = {
   "timePeriod": ["morning", "evening", "afternoon"],
   "youLate": ["u", "r", "late"],
+  "oneThingDidnt": ["thing", "did", "change"],
+  "speakInRiddles": ["you", "still", "speak", "riddle"],
+  "ability": ["do something", "what can you do", "your ability"],
   "gg": ["lol", "hahaha", "well played"],
   "up_emotions": ["happy", "cheer", "yay", "wow","excite", "awesome"],
   "angry_emotions": ["grrr", "roar", "argh"]
@@ -46,6 +48,9 @@ def withCondition(text, name):
   
   if "pass" in text:
     return "You... Shall not, pass!"
+
+  elif all(word in text for word in constDC["oneThingDidnt"]):
+    return "Hmmm?"
 
   elif "good night" in text or "goodnight" in text:
     return "Good Night {}.".format(name)
@@ -62,20 +67,31 @@ def withCondition(text, name):
   else:
     return None
 
+
+
 # return multiple values usually with 2 (for gifs)
 def returnList(text, name):
   tmp = {
     "textRep": None,
     "gifRep": None
   }
+  
+  if any(word in text for word in constDC["ability"]):
+    rand = choice(os.listdir("do something"))
+    tmp["gifRep"] = "do something/{}".format(rand)
+    return tmp
 
-  if all(word in text for word in constDC["youLate"]):
+  elif all(word in text for word in constDC["youLate"]):
     tmp["textRep"] = "A wizard is never late, {}. Nor is he early; he arrives precisely when he means to.".format(name)
     tmp["gifRep"] = "gifs/precisesly_;3.gif"
     return tmp
   
   elif any(word in text for word in constDC["gg"]):
     tmp["gifRep"] = "gifs/faster wink.gif"
+    return tmp
+  
+  elif all(word in text for word in constDC["speakInRiddles"]):
+    tmp["gifRep"] = "gifs/you speak in riddles.gif"
     return tmp
   
   else:
@@ -85,7 +101,7 @@ def returnList(text, name):
 # Return random movie lines
 def get_random_line():
   
-  key = "Bearer {}".format(getenv('API_KEY'))
+  key = "Bearer {}".format(os.getenv('API_KEY'))
 
   url = requests.get("https://the-one-api.dev/v2/quote?character=5cd99d4bde30eff6ebccfea0", 
   headers ={
@@ -100,7 +116,7 @@ def get_random_line():
     for j in i["dialog"]:
       word = word + j
     list1.append(word)
-  
+ 
   # return the value
   return choice(list1)
 
