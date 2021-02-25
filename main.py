@@ -22,7 +22,7 @@ async def on_message(message):
 
   # Shortcut for message content
   msg = message.content.lower()
-  name = message.author.name
+  name = message.author.mention
 
   # check for gandalf special name calls
   if mdl.specialNameCheck(msg, name):
@@ -33,14 +33,8 @@ async def on_message(message):
   if not any(word in msg for word in gandalf_names):
     return
   
-  response = mdl.mainCheck(msg, name)
-  if response:
-    # Check for text format
-    if "/" not in response:
-      await message.channel.send(response)
-    # Print file
-    else:
-      await message.channel.send(file=discord.File(response))
+  if mdl.mainCheck(msg, name):
+    await message.channel.send(mdl.mainCheck(msg, name))
     return
   
   if any(word in msg for word in encourage):

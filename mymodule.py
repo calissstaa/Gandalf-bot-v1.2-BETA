@@ -37,9 +37,9 @@ constDC = {
   "timePeriod": ["morning", "evening", "afternoon"],
   "youLate": ["u", "r", "late"],
   "oneThingDidnt": ["thing", "did", "change"],
-  "speakInRiddles": ["you", "still", "speak", "riddle"],
-  "ability": ["do something", "what can you do", "your ability"],
-  "gg": ["lol", "hahaha", "well played"],
+  "speakInRiddles": ["you", "speak", "riddle"],
+  "ability": ["do something", "what can you do", "your ability", "your abilities"],
+  "gg": ["lol", "hahaha", "well played", "cool", "awesome", "nice one", "funny"],
   "up_emotions": ["happy", "cheer", "yay", "wow","excite", "awesome"],
   "angry_emotions": ["grrr", "roar", "argh"]
 }
@@ -47,7 +47,16 @@ constDC = {
 def withCondition(text, name):
   
   if "pass" in text:
-    return "You... Shall not, pass!"
+    return "You... Shall not... pass!"
+
+  elif "just use" in text:
+    return "Be silent. Keep your forked tongue behind your teeth. I did not pass through fire and death to bandy crooked words with a witless worm."
+
+  elif "friend" in text:
+    return "mellon"
+  
+  elif "you going" in text:
+    return "I have some things I have to attend to."
 
   elif all(word in text for word in constDC["oneThingDidnt"]):
     return "Hmmm?"
@@ -86,19 +95,18 @@ def returnList(text, name):
     tmp["gifRep"] = "gifs/precisesly_;3.gif"
     return tmp
   
-  #here
-
+  elif any(word in text for word in constDC["gg"]):
+    rand = choice(os.listdir("gg gandalf"))
+    tmp["gifRep"] = "gg gandalf/{}".format(rand)
+    return tmp
+  
   elif all(word in text for word in constDC["speakInRiddles"]):
     tmp["gifRep"] = "gifs/you speak in riddles.gif"
     return tmp
   
   else:
     return None
-"""
-  elif any(word in text for word in constDC["gg"]):
-    tmp["gifRep"] = "gifs/faster wink.gif"
-    return tmp
-"""
+
 
 # Return random movie lines
 def get_random_line():
