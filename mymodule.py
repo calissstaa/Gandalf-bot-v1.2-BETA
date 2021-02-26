@@ -20,7 +20,7 @@ def specialNameCheck(text1, name):
       "gandalf!":"{}.".format(name),
       "olorin": "You know this? How?",
       "tharkun": "Are you a realtive of dwarves?",
-      "incanus": "Long have someone called me by that name",
+      "incanus": "Long have someone called me by that name.",
       "stromcrow": "I will draw you, Saruman, as poison is drawn from a wound."
     } 
   return switcher.get(text1, None) 
@@ -36,10 +36,11 @@ For:
 constDC = {
   "timePeriod": ["morning", "evening", "afternoon"],
   "youLate": ["u", "r", "late"],
-  "oneThingDidnt": ["thing", "did", "change"],
+  "oneThingDidnt": ["thing", "one", "change"],
   "speakInRiddles": ["you", "speak", "riddle"],
-  "ability": ["do something", "what can you do", "your ability", "your abilities"],
-  "gg": ["lol", "hahaha", "well played", "cool", "awesome", "nice one", "funny"],
+  "ability": ["do something", "what can you do", "your ability", "your abilities", "bored"],
+  "gg": ["lol", "gg gandalf", "hahaha", "well played", "cool", "awesome", "nice one", "funny"],
+  "danceRep": ["No.", "There are few who can. The language is that of Mordor, which I will not utter here.", "No."],
   "up_emotions": ["happy", "cheer", "yay", "wow","excite", "awesome"],
   "angry_emotions": ["grrr", "roar", "argh"]
 }
@@ -76,8 +77,6 @@ def withCondition(text, name):
   else:
     return None
 
-
-
 # return multiple values usually with 2 (for gifs)
 def returnList(text, name):
   tmp = {
@@ -89,7 +88,7 @@ def returnList(text, name):
     rand = choice(os.listdir("do something"))
     tmp["gifRep"] = "do something/{}".format(rand)
     return tmp
-
+  
   elif all(word in text for word in constDC["youLate"]):
     tmp["textRep"] = "A wizard is never late, {}. Nor is he early; he arrives precisely when he means to.".format(name)
     tmp["gifRep"] = "gifs/precisesly_;3.gif"

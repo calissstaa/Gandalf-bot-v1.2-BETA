@@ -1,4 +1,4 @@
-import discord, os
+import discord, os, random
 import mymodule as mdl
 from keep_alive import keep_alive
 
@@ -14,6 +14,9 @@ gandalf_names = ["gandalf", "mithrandir"]
 
 # Encourage word set
 encourage = ["encourage", "cheer", "sad", "cry", "help", "depres", "confuse", "afraid", "sorrow","stress", "tired", "sedih", "lost", "grieved", "miserable", "trouble", "inspire", "quote", "wisdom", "counsel", "what should i do"]
+
+# EAster egg dance replies
+easterEggDance = ["No.", "There are few who can. The language is that of Mordor, which I will not utter here.", "No!"]
 
 @client.event
 async def on_message(message):
@@ -52,6 +55,16 @@ async def on_message(message):
       await message.channel.send(listCall["textRep"])
     if listCall["gifRep"]:
       await message.channel.send(file=discord.File(listCall["gifRep"]))
+    return
+  
+  # gandalf can dance easter egg ('25'% chance getting)
+  if "dance" in msg:
+    chance = random.randint(0,100)
+    if chance <= 25:
+      await message.channel.send(file=discord.File("gifs/gandalf dance.gif"))
+      await message.channel.send(file=discord.File("gifs/gandalf hahaha.gif"))
+    else:
+      await message.channel.send(random.choice(easterEggDance))
     return
   
   # if none of those then generate random reply
