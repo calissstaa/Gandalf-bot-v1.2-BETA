@@ -42,7 +42,7 @@ constDC = {
   "gg": ["lol", "gg gandalf", "hahaha", "well played", "cool", "awesome", "nice one", "funny"],
   "danceRep": ["No.", "There are few who can. The language is that of Mordor, which I will not utter here.", "No."],
   "up_emotions": ["happy", "cheer", "yay", "wow","excite", "awesome"],
-  "angry_emotions": ["grrr", "roar", "argh"]
+  "angry_emotions": ["grrr", "roar", "argh", "angry"]
 }
 
 def withCondition(text, name):
@@ -98,6 +98,9 @@ def returnList(text, name):
     rand = choice(os.listdir("gg gandalf"))
     tmp["gifRep"] = "gg gandalf/{}".format(rand)
     return tmp
+  
+  elif any(word in text for word in constDC["angry_emotions"]):
+    tmp["gifRep"] = "gifs/no need to angry.gif"
   
   elif all(word in text for word in constDC["speakInRiddles"]):
     tmp["gifRep"] = "gifs/you speak in riddles.gif"
