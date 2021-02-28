@@ -10,9 +10,7 @@ This bot takes the command "Gandalf" or "Mithrandir" (case insensitive) to funct
 
 On the other hand, Gandalf the Bot is not really like the "real" Gandalf, this Gandalf-Bot's main purpose is only to be able to encourage others when they are in need or down. Although, there are a few commands that will make Gandalf reply with GIFS or exactly like in the movie (e.g. "You are late Gandalf"), some are mostly randomly generated quotes.
 
-
-
-## Features Includes:
+#### Features Includes:
 
 - Say "hello" or "Bye" to Gandalf
 - Ask how he is doing
