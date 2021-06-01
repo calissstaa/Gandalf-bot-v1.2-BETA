@@ -15,13 +15,9 @@ def mainCheck(text, name):
 
 def specialNameCheck(text1, name): 
   switcher = { 
-      "gandalf": "Gandalf? Yes... that was what they used to call me. Gandalf the Grey. That was my name.", 
-      "gandalf...": "I am Gandalf the White. And I come back to you now - at the turn of the tide.",         "gandalf?": "Yes, I'm here and you're lucky to be here, too. A few more hours and you would have been beyond our aid. You have some strength in you my dear Hobbit.",
-      "gandalf!":"{}.".format(name),
-      "olorin": "You know this? How?",
-      "tharkun": "Are you a realtive of dwarves?",
-      "incanus": "Long have someone called me by that name.",
-      "stromcrow": "I will draw you, Saruman, as poison is drawn from a wound."
+      "mithrandir": "It has been a long time.",
+      "g-bot": "What?",
+      "gbot": "What?"
     } 
   return switcher.get(text1, None) 
 
@@ -42,19 +38,23 @@ constDC = {
   "gg": ["lol", "gg gandalf", "hahaha", "well played", "cool", "awesome", "nice one", "funny"],
   "danceRep": ["No.", "There are few who can. The language is that of Mordor, which I will not utter here.", "No."],
   "up_emotions": ["happy", "cheer", "yay", "wow","excite", "awesome"],
-  "angry_emotions": ["grrr", "roar", "argh", "angry"]
+  "angry_emotions": ["annoying", "grrr", "roar", "argh", "angry", "ughhh", "aaaa", "nyebelin", "i hate"]
 }
+
 
 def withCondition(text, name):
   
   if "pass" in text:
     return "You... Shall not... pass!"
 
-  elif "just use" in text:
+  elif "just use" in text or "eagle" in text:
     return "Be silent. Keep your forked tongue behind your teeth. I did not pass through fire and death to bandy crooked words with a witless worm."
 
   elif "friend" in text:
-    return "mellon"
+    return "Mel..lon"
+  
+  elif "gandalf stormcrow" in text and not "no power" in text:
+    return "I will draw you, Saruman, as poison is drawn from a wound."
   
   elif "you going" in text:
     return "I have some things I have to attend to."
@@ -88,7 +88,15 @@ def returnList(text, name):
     rand = choice(os.listdir("do something"))
     tmp["gifRep"] = "do something/{}".format(rand)
     return tmp
+
+  elif "no power" in text:
+    tmp["gifRep"] = "gifs/gandalf be white.gif"
+    return tmp
   
+  elif "mellon" in text:
+    tmp["gifRep"] = "gifs/gate moria open.gif"
+    return tmp
+    
   elif all(word in text for word in constDC["youLate"]):
     tmp["textRep"] = "A wizard is never late, {}. Nor is he early; he arrives precisely when he means to.".format(name)
     tmp["gifRep"] = "gifs/precisesly_;3.gif"
@@ -101,6 +109,7 @@ def returnList(text, name):
   
   elif any(word in text for word in constDC["angry_emotions"]):
     tmp["gifRep"] = "gifs/no need to angry.gif"
+    return tmp
   
   elif all(word in text for word in constDC["speakInRiddles"]):
     tmp["gifRep"] = "gifs/you speak in riddles.gif"
@@ -117,8 +126,11 @@ def get_random_line():
 
   url = requests.get("https://the-one-api.dev/v2/quote?character=5cd99d4bde30eff6ebccfea0", 
   headers ={
-        "Authorization": "Bearer _ZV4QrtOiART2dX9fEKp"
+        "Authorization": key
   })
+
+  if not url.status_code == 200:
+    return "I am having an error {}.".format(url.status_code)
 
   data = url.json()
 

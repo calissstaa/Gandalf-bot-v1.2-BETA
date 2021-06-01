@@ -7,16 +7,16 @@ client = discord.Client()
 @client.event
 async def on_ready():
   print('We have logged in as {0.user}'.format(client))
-  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Gandalf"))
+  #await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Gandalf"))
 
 # Gandalf names local var
-gandalf_names = ["gandalf", "mithrandir"]
+gandalf_names = ["g-bot", "gbot", "gandalfbot", "gandalf bot", "gandalf the bot"]
 
 # Encourage word set
-encourage = ["encourage", "cheer", "sad", "cry", "help", "depres", "confuse", "afraid", "sorrow","stress", "tired", "sedih", "lost", "grieved", "miserable", "trouble", "inspire", "quote", "wisdom", "counsel", "what should i do"]
+encourage = ["encourage", "cheer", "sad", "cry", "help", "depres", "confuse", "afraid", "sorrow","stres", "tired", "sedih", "lost", "griev", "miserable", "trouble", "inspire", "quote", "wisdom", "counsel", "what should i do", "advice", "sick", "i hate life", "despair", "too hard", "im dead", "how to", ";)", ":)", ";-;", ";_;", ";d", "hope", "dying inside", "dead inside", "frustrat", "desperat"]
 
 # EAster egg dance replies
-easterEggDance = ["No.", "There are few who can. The language is that of Mordor, which I will not utter here.", "No!"]
+easterEggDance = ["No.", "There are few who can. The language is that of Mordor, which I will not utter here.", "No!", "Yes.", "Just tea, thank you."]
 
 @client.event
 async def on_message(message):
@@ -36,13 +36,13 @@ async def on_message(message):
   if not any(word in msg for word in gandalf_names):
     return
   
-  if mdl.mainCheck(msg, name):
-    await message.channel.send(mdl.mainCheck(msg, name))
-    return
-  
   if any(word in msg for word in encourage):
     text = mdl.get_random_quote()
     await message.channel.send(text)
+    return
+
+  if mdl.mainCheck(msg, name):
+    await message.channel.send(mdl.mainCheck(msg, name))
     return
 
   if mdl.withCondition(msg, name):
